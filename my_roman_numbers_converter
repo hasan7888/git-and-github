@@ -1,0 +1,91 @@
+
+def one(n):
+            if n==0:
+                  return "" 
+            elif 1<=n<=3:
+                    return n*"I"
+            elif n==4:
+                    return "IV"
+            elif n==5:
+                    return "V"
+            elif  6<=n<=8:
+                    return "V"+"I"*(n-5) 
+            else:
+                    return "IX"
+def two(n):
+        tens=int(n/10)
+        units=n%10
+                
+        if tens==0:
+            return ""     
+        if 1<=tens<=3:
+            return "X"*tens +""+one(units)
+        if tens== 4:
+            return "XL"+one(units)
+        if tens==5:
+            return "L"+""+one(units)
+        if 6<=tens<=8:
+            return "L"+""+"X"*(tens-5)+""+one(units)
+        if tens==9:
+            return  "X"+""+"C"+""+one(units)
+
+def three(n):
+                    hundred=int(n/100)
+                    tens=n%100
+
+                    concatenation=""
+                    if tens==0:
+                           concatenation=""
+                    if tens<10:
+                            concatenation=one(tens)
+                    else:
+                             concatenation=two(tens)
+
+                    if hundred==0: 
+                      return  "" 
+                    if 1<=hundred<=3:
+                        return "C"*hundred+""+concatenation
+                    if  hundred==4:
+                        return "CD" +concatenation
+                    if   hundred== 5:
+                        return "D"+concatenation
+                    if 6<=hundred<=8:
+                        return "D"+("C"*(hundred-5))+concatenation
+                    if hundred==9:
+                        return "C"+""+"M"+""+concatenation
+    
+def four(n):
+        thousands=int(n/1000)
+        rest=n%1000
+        if rest==0:
+            concatenation=""
+        elif rest<10:
+            concatenation=one(rest)
+        elif rest <100:
+            concatenation=two(rest)
+        else:
+            concatenation=three(rest)
+        
+        if thousands==0:
+            return ""
+        if 1<=thousands<=3:
+            return "M"*thousands+""+concatenation
+
+def my_roman_numerals_converter(n):
+    if n>3000:
+        return -1
+    if n < 10:
+        return one(n)
+    if n<100:
+        return two(n)
+    if n<1000:
+        return three(n)
+    else:
+        return four(n)
+
+                        
+
+
+           
+
+        
